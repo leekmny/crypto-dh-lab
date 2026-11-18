@@ -1,6 +1,6 @@
 # Crypto DH Lab — 눈으로 배우는 암호 통신
 
-[Windows 다운로드 · v0.1.0](https://github.com/leekmny/crypto-dh-lab/releases/tag/v0.1.0) · [따라 하기](docs/LEARNING.md) · [MIT License](LICENSE)
+[Windows 다운로드 · v0.1.1](https://github.com/leekmny/crypto-dh-lab/releases/tag/v0.1.1) · [따라 하기](docs/LEARNING.md) · [MIT License](LICENSE)
 
 **Alice와 Bob은 비밀값을 보내지 않고 어떻게 같은 비밀을 만들까요?**
 
@@ -8,12 +8,18 @@
 
 Alice와 Bob은 **서로 다른 Python 프로세스**에서 암호 연산을 수행하고, **127.0.0.1 TCP**로 통신합니다. 웹 화면은 실제 실행 기록을 재생합니다. 재생을 멈춰도 백엔드의 실험은 계속 진행됩니다.
 
-![실제 패킷과 단계별 해설을 보여주는 실습 화면](docs/images/desktop.png)
+## 패킷 재생 미리 보기
+
+![작은 수 모드에서 Alice의 파란 패킷과 Bob의 보라색 패킷이 반대 방향으로 이동하는 실제 실험 재생](docs/images/packet-replay.gif)
+
+작은 수 모드의 정상 실험을 **1배속**으로 재생한 화면입니다. 파란색은 **Alice → Bob**, 보라색은 **Bob → Alice**입니다. 이동하는 패킷에 **DH 공개값**, **키 확인**, **응용 메시지**가 표시됩니다. 시스템에서 모션 줄이기를 켜면 방향과 종류가 정지 상태로 표시됩니다.
 
 <details>
-<summary>좁은 화면에서 보기</summary>
+<summary>이동 중 화면 캡처 · 데스크톱과 모바일</summary>
 
-<img src="docs/images/mobile.png" width="320" alt="작은 화면에 맞춰 배치된 프로토콜 실습 화면">
+![Alice의 DH 공개값 패킷이 경로 중간을 이동하는 데스크톱 실습 화면](docs/images/desktop.png)
+
+<img src="docs/images/mobile.png" width="320" alt="Alice의 DH 공개값 패킷이 이동 중이며 최근 송신 방향이 표시된 모바일 실습 화면">
 
 </details>
 
@@ -28,7 +34,7 @@ Alice와 Bob은 **서로 다른 Python 프로세스**에서 암호 연산을 수
 
 ## Windows에서 바로 시작
 
-1. [v0.1.0 Releases](https://github.com/leekmny/crypto-dh-lab/releases/tag/v0.1.0)에서 `CryptoDHLab-Windows-x64.zip`을 받습니다.
+1. [v0.1.1 Releases](https://github.com/leekmny/crypto-dh-lab/releases/tag/v0.1.1)에서 `CryptoDHLab-Windows-x64.zip`을 받습니다.
 2. ZIP의 **폴더 전체를 압축 해제**합니다.
 3. 압축을 푼 폴더 안의 `CryptoDHLab.exe`를 더블클릭합니다. 작은 실행 창과 기본 브라우저가 열립니다.
 4. 브라우저에서 계산 모드와 시나리오를 고른 뒤 **실험 시작**을 누릅니다.

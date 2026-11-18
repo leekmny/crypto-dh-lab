@@ -9,6 +9,7 @@ const make = (tag, cls, text) => {
 };
 const set = (id, value) => { $(id).textContent = value; };
 const shorten = value => String(value).length > 32 ? `${String(value).slice(0, 20)}…${String(value).slice(-8)}` : String(value);
+const packetTypes = { dh: 'DH 공개값', confirm: '키 확인', app: '응용 메시지' };
 const animation = new PacketAnimation(document.querySelector('.network-svg'));
 const descriptions = {
   normal: '두 프로세스가 같은 사전 공유키로 공개값을 교환합니다.',
@@ -108,9 +109,9 @@ $('clear').addEventListener('click', () => {
   set('process-fact','Alice · Bob 독립 실행'); set('run-label','실행 대기'); updateButtons();
 });
 $('previous').addEventListener('click', () => { playing = false; animation.stop(); cursor = Math.max(0, cursor - 1); renderRecords(); });
-$('next').addEventListener('click', () => { playing = false; advanceRecord(); });
+$('next').addEventListener('click', () => { playing = false; animation.stop(); advanceRecord(); });
 $('play').addEventListener('click', () => {
-  if (cursor === events.length && !state?.running && events.length) { cursor = 0; playing = true; }
+  if (cursor === events.length && !state?.running && events.length) { animation.stop(); cursor = 0; playing = true; }
   else playing = !playing;
   if (!playing) animation.stop(); renderRecords();
 });
@@ -120,7 +121,10 @@ $('reveal').addEventListener('click', () => {
 function advanceRecord() {
   if (cursor >= events.length) return;
   const event = events[cursor++];
-  if (event.event === 'sending') animation.transfer(event.actor, Number($('speed').value));
+  if (event.event === 'sending') {
+    const type = event.data.packet.header.type;
+    animation.transfer(event.actor, packetTypes[type], Number($('speed').value));
+  }
   if (!manualLesson) {
     const index = lessons.findIndex(item => item.event === event.event);
     if (index >= 0) lesson = Math.max(lesson, index);
@@ -168,11 +172,20 @@ function renderRecords() {
 }
 function renderPackets(visible) {
   const packets = visible.filter(e => e.event === 'sending' && ['Alice','Bob'].includes(e.actor));
+  const latest = packets.at(-1)?.data.packet.header;
+  const transferStatus = $('transfer-status');
+  if (latest) {
+    transferStatus.dataset.sender = latest.sender.toLowerCase();
+    transferStatus.textContent = `최근 송신 · ${latest.sender} → ${latest.sender === 'Alice' ? 'Bob' : 'Alice'} · ${packetTypes[latest.type]}`;
+  } else {
+    delete transferStatus.dataset.sender;
+    transferStatus.textContent = '패킷 송신 기록 대기';
+  }
   if (selectedPacket < 0 || selectedPacket >= packets.length) selectedPacket = packets.length - 1;
   const container = $('packet-list'); container.replaceChildren();
   packets.forEach((event,index) => {
     const head = event.data.packet.header;
-    const chip = make('button',`packet-chip${index === selectedPacket ? ' active' : ''}`,`${index + 1} · ${head.sender} · ${{dh:'DH 공개값',confirm:'키 확인',app:'응용 메시지'}[head.type]}`);
+    const chip = make('button',`packet-chip${index === selectedPacket ? ' active' : ''}`,`${index + 1} · ${head.sender} · ${packetTypes[head.type]}`);
     chip.addEventListener('click', () => { selectedPacket = index; renderPackets(visible); });
     container.append(chip);
   });

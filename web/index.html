@@ -68,8 +68,13 @@
               <path id="route-a" class="route route-a" d="M65 48H730" marker-end="url(#arrow-a)"/>
               <path id="route-b" class="route route-b" d="M735 109H70" marker-end="url(#arrow-b)"/>
               <text x="400" y="31" text-anchor="middle" class="formula formula-a">E(gᵃ mod p, K_AB)</text><text x="400" y="94" text-anchor="middle" class="formula formula-b">E(gᵇ mod p, K_AB)</text>
-              <g id="packet-animation" class="hidden"><rect x="-27" y="-14" width="54" height="28" rx="7"/><path d="M-7-3h14v10H-7Zm3 0v-4a4 4 0 0 1 8 0v4"/></g>
+              <g id="packet-animation" class="hidden" aria-hidden="true">
+                <rect x="-64" y="-16" width="128" height="32" rx="16"/>
+                <path transform="translate(-45 0)" d="M-6-2h12v9H-6Zm3 0v-4a3 3 0 0 1 6 0v4"/>
+                <text x="10" y="1" text-anchor="middle" dominant-baseline="central"></text>
+              </g>
             </svg>
+            <p class="transfer-status" id="transfer-status">패킷 송신 기록 대기</p>
             <div class="eve-strip hidden" id="eve-status">◉ <strong>Eve · 실제 TCP 중계기</strong><span id="eve-result">네트워크 관찰 대기</span></div>
             <div class="playback"><div class="playback-buttons"><button class="icon-button" id="previous" aria-label="이전 실행 기록">↶</button><button class="button compact" id="play">기록 일시정지</button><button class="icon-button" id="next" aria-label="다음 실행 기록">↷</button></div><span id="record-count">기록 0 / 0</span><label for="speed" class="speed-label">재생 속도 <select id="speed"><option value="1">1배</option><option value="2" selected>2배</option><option value="4">4배</option></select></label></div>
             <progress id="event-progress" max="1" value="0" aria-label="실행 기록 재생 진행률"></progress>
