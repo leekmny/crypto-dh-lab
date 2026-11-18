@@ -1,0 +1,10 @@
+# 검증한 Windows / Python 3.14 환경의 재현용 버전.
+cffi==2.1.1
+colorama==0.4.6
+cryptography==49.0.0
+iniconfig==2.3.1
+packaging==26.3
+pluggy==1.7.0
+pycparser==3.12
+Pygments==2.21.0
+pytest==9.2.0
