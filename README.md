@@ -2,7 +2,7 @@
 
 [Windows 다운로드 · v0.1.1](https://github.com/leekmny/crypto-dh-lab/releases/tag/v0.1.1) · [따라 하기](docs/LEARNING.md) · [MIT License](LICENSE)
 
-**한국어** | [English](README.en.md)
+**한국어** | [English](https://github.com/leekmny/crypto-dh-lab/blob/main/README.en.md)
 
 **Alice와 Bob은 비밀값을 보내지 않고 어떻게 같은 비밀을 만들까요?**
 
