@@ -2,6 +2,8 @@
 
 [Windows 다운로드 · v0.1.1](https://github.com/leekmny/crypto-dh-lab/releases/tag/v0.1.1) · [따라 하기](docs/LEARNING.md) · [MIT License](LICENSE)
 
+**한국어** | [English](README.en.md)
+
 **Alice와 Bob은 비밀값을 보내지 않고 어떻게 같은 비밀을 만들까요?**
 
 작은 수로 Diffie–Hellman의 계산을 따라가고, 암호화된 공개값과 실제 패킷을 살펴보는 한국어 학습 실험실입니다. 계산값, 패킷, 단계별 해설을 한 화면에서 연결해 볼 수 있습니다.
